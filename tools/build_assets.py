@@ -27,14 +27,23 @@ MONO = "ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace"
 glyphs = json.load(open(os.path.join(os.path.dirname(__file__), "glyphs.json")))
 
 # Hero geometry
-W, H = 1200, 440
+W, H = 1200, 420
 PAD = 56
 FS = 72.0                      # headline size
 CAP = 0.768 * FS               # cap height from the font's OS/2 table
 L1_W = glyphs["VAIBHAV"]["width"] / 100.0 * FS
 L2_W = glyphs["REDDY"]["width"] / 100.0 * FS
-L1_Y, L2_Y = 196.0, 298.0
-RULE_Y = 338
+L1_Y, L2_Y = 196.0, 278.0       # tightened from 298 — the two lines sat too far apart
+RULE_Y = 318
+
+# The clip rect doubles as the type-in reveal mask, and its FINAL position is
+# exactly this box — so it isn't just an animation shape, it permanently crops
+# whatever ink falls outside it. Octavus Black's slanted cut lets a glyph's
+# outline spill past its own advance width (the last "V") and every descender
+# (the "y" in REDDY) drops below the baseline, so the box needs real padding,
+# not just a couple of px of rounding slack.
+OVER_X = FS * 0.09              # horizontal ink overhang from the italic cut
+DESC_PAD = FS * 0.32             # clearance for descenders below the baseline
 
 
 def headline_paths(scale):
@@ -88,14 +97,14 @@ def hero(dark: bool) -> str:
     <stop offset="55%" stop-color="{bg}" stop-opacity="0"/>
     <stop offset="100%" stop-color="{P['crt'] if dark else P['bone_dk']}" stop-opacity="{0.85 if dark else 0.5}"/>
   </radialGradient>
-  <clipPath id="clip1-{sfx}"><rect class="rv" x="{PAD}" y="{L1_Y - CAP - 8}" width="{L1_W}" height="{CAP + 16}"/></clipPath>
-  <clipPath id="clip2-{sfx}"><rect class="rv2" x="{PAD}" y="{L2_Y - CAP - 8}" width="{L2_W}" height="{CAP + 16}"/></clipPath>
+  <clipPath id="clip1-{sfx}"><rect class="rv" x="{PAD - OVER_X:.1f}" y="{L1_Y - CAP - 8:.1f}" width="{L1_W + 2 * OVER_X:.1f}" height="{CAP + 16 + DESC_PAD:.1f}"/></clipPath>
+  <clipPath id="clip2-{sfx}"><rect class="rv2" x="{PAD - OVER_X:.1f}" y="{L2_Y - CAP - 8:.1f}" width="{L2_W + 2 * OVER_X:.1f}" height="{CAP + 16 + DESC_PAD:.1f}"/></clipPath>
 </defs>
 <style>
   .rv  {{ transform: translateX(0); animation: t1 .9s steps(7,end) .3s both; }}
   .rv2 {{ transform: translateX(0); animation: t2 .7s steps(5,end) 1.25s both; }}
-  @keyframes t1 {{ from {{ transform: translateX(-{L1_W:.1f}px) }} to {{ transform: translateX(0) }} }}
-  @keyframes t2 {{ from {{ transform: translateX(-{L2_W:.1f}px) }} to {{ transform: translateX(0) }} }}
+  @keyframes t1 {{ from {{ transform: translateX(-{L1_W + OVER_X:.1f}px) }} to {{ transform: translateX(0) }} }}
+  @keyframes t2 {{ from {{ transform: translateX(-{L2_W + OVER_X:.1f}px) }} to {{ transform: translateX(0) }} }}
   .cur1 {{ opacity: 0; animation: cur1 1.25s steps(1,end) .3s; }}
   @keyframes cur1 {{ 0%,100% {{ opacity:0 }} 2%,98% {{ opacity:1 }} }}
   .cur2 {{ opacity: 1; animation: blink 1.1s steps(1,end) 1.95s infinite; }}
@@ -156,12 +165,12 @@ def hero(dark: bool) -> str:
 
 <g class="fade">
   <g font-family="{MONO}" font-size="16" letter-spacing="2.6" fill="{ink}">
-    <text x="{PAD}" y="374" opacity=".9">DESIGNER &amp; AI/ML ENGINEER</text>
-    <text x="{PAD}" y="406" font-size="14" fill="{dim}">&gt; status: open to opportunities</text>
+    <text x="{PAD}" y="354" opacity=".9">DESIGNER &amp; AI/ML ENGINEER</text>
+    <text x="{PAD}" y="386" font-size="14" fill="{dim}">&gt; status: open to opportunities</text>
   </g>
   <g font-family="{MONO}" font-size="13" letter-spacing="2.2" fill="{dim}" text-anchor="end">
-    <text x="{W - PAD}" y="374">BENGALURU, IN</text>
-    <text x="{W - PAD}" y="406">VR-2026-GH</text>
+    <text x="{W - PAD}" y="354">BENGALURU, IN</text>
+    <text x="{W - PAD}" y="386">VR-2026-GH</text>
   </g>
 </g>
 
@@ -187,7 +196,7 @@ def hero(dark: bool) -> str:
 <g fill="{ink}">
   <path class="star"  d="M300 78 L305 92 L319 97 L305 102 L300 116 L295 102 L281 97 L295 92 Z"/>
   <path class="star2" d="M878 250 L881 259 L890 262 L881 265 L878 274 L875 265 L866 262 L875 259 Z"/>
-  <path class="star3" d="M916 282 L920 293 L931 297 L920 301 L916 312 L912 301 L901 297 L912 293 Z"/>
+  <path class="star3" d="M916 262 L920 273 L931 277 L920 281 L916 292 L912 281 L901 277 L912 273 Z"/>
 </g>
 
 <rect x="1" y="1" width="{W - 2}" height="{H - 2}" fill="none" stroke="{rule}" stroke-width="2" opacity=".45"/>
