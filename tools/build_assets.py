@@ -30,31 +30,62 @@ glyphs = json.load(open(os.path.join(os.path.dirname(__file__), "glyphs.json")))
 W, H = 1200, 420
 PAD = 56
 FS = 72.0                      # headline size
-CAP = 0.768 * FS               # cap height from the font's OS/2 table
-L1_W = glyphs["VAIBHAV"]["width"] / 100.0 * FS
-L2_W = glyphs["REDDY"]["width"] / 100.0 * FS
 L1_Y, L2_Y = 196.0, 278.0       # tightened from 298 — the two lines sat too far apart
 RULE_Y = 318
 
-# The clip rect doubles as the type-in reveal mask, and its FINAL position is
-# exactly this box — so it isn't just an animation shape, it permanently crops
-# whatever ink falls outside it. Octavus Black's slanted cut lets a glyph's
-# outline spill past its own advance width (the last "V") and every descender
-# (the "y" in REDDY) drops below the baseline, so the box needs real padding,
-# not just a couple of px of rounding slack.
-OVER_X = FS * 0.09              # horizontal ink overhang from the italic cut
-DESC_PAD = FS * 0.32             # clearance for descenders below the baseline
+# The clip rect doubles as the type-in reveal mask, so its FINAL resting position
+# is the permanent visible crop of the text — anything outside it is cut off for
+# good, not just mid-animation. Sizing it from advance widths sliced ~25px off the
+# last letter of each line, because this face is steeply slanted and its outlines
+# overhang their own advance boxes. So every dimension below comes from the
+# measured ink bbox instead, with one uniform margin for anti-aliasing slack.
+MARGIN = 10.0
+CURSOR_GAP = 16.0
 
 
-def headline_paths(scale):
-    """Both headline words as path data, scaled from the 100px extraction."""
-    k = scale / 100.0
-    return (
-        f'<g transform="translate({PAD},{L1_Y}) scale({k})">'
-        f'<path d="{glyphs["VAIBHAV"]["d"]}"/></g>',
-        f'<g transform="translate({PAD},{L2_Y}) scale({k})">'
-        f'<path d="{glyphs["REDDY"]["d"]}"/></g>',
-    )
+class Line:
+    """One headline line, positioned and measured from real ink bounds."""
+
+    def __init__(self, word: str, baseline: float):
+        self.word = word
+        self.baseline = baseline
+        k = FS / 100.0                      # the paths were extracted at 100px
+        x0, y0, x1, y1 = (v * k for v in glyphs[word]["bbox"])
+        # Sit the ink's left edge exactly on the margin, so both lines are
+        # optically flush; positioning by the advance origin instead left the
+        # V ~9px right of the R, since their side bearings differ.
+        self.dx = PAD - x0
+        self.ink_x0 = PAD
+        self.ink_x1 = x1 + self.dx
+        self.ink_y0 = y0 + baseline
+        self.ink_y1 = y1 + baseline
+        self.k = k
+
+    @property
+    def clip_x(self): return self.ink_x0 - MARGIN
+
+    @property
+    def clip_y(self): return self.ink_y0 - MARGIN
+
+    @property
+    def clip_w(self): return (self.ink_x1 - self.ink_x0) + 2 * MARGIN
+
+    @property
+    def clip_h(self): return (self.ink_y1 - self.ink_y0) + 2 * MARGIN
+
+    @property
+    def cursor_x(self): return self.ink_x1 + CURSOR_GAP
+
+    @property
+    def cap(self): return self.baseline - self.ink_y0   # measured, not from OS/2
+
+    def path(self):
+        return (f'<g transform="translate({self.dx:.2f},{self.baseline}) '
+                f'scale({self.k})"><path d="{glyphs[self.word]["d"]}"/></g>')
+
+
+L1 = Line("VAIBHAV", L1_Y)
+L2 = Line("REDDY", L2_Y)
 
 
 def hero(dark: bool) -> str:
@@ -69,7 +100,7 @@ def hero(dark: bool) -> str:
         grid_op, scan_op, sweep_op = 0.10, 0.0, 0.05
         grid_c = P["blueprint"]
 
-    l1, l2 = headline_paths(FS)
+    l1, l2 = L1.path(), L2.path()
     sfx = "dark" if dark else "light"
 
     scanlines = ""
@@ -97,14 +128,23 @@ def hero(dark: bool) -> str:
     <stop offset="55%" stop-color="{bg}" stop-opacity="0"/>
     <stop offset="100%" stop-color="{P['crt'] if dark else P['bone_dk']}" stop-opacity="{0.85 if dark else 0.5}"/>
   </radialGradient>
-  <clipPath id="clip1-{sfx}"><rect class="rv" x="{PAD - OVER_X:.1f}" y="{L1_Y - CAP - 8:.1f}" width="{L1_W + 2 * OVER_X:.1f}" height="{CAP + 16 + DESC_PAD:.1f}"/></clipPath>
-  <clipPath id="clip2-{sfx}"><rect class="rv2" x="{PAD - OVER_X:.1f}" y="{L2_Y - CAP - 8:.1f}" width="{L2_W + 2 * OVER_X:.1f}" height="{CAP + 16 + DESC_PAD:.1f}"/></clipPath>
+  <clipPath id="clip1-{sfx}"><rect class="rv" x="{L1.clip_x:.1f}" y="{L1.clip_y:.1f}" width="{L1.clip_w:.1f}" height="{L1.clip_h:.1f}"/></clipPath>
+  <clipPath id="clip2-{sfx}"><rect class="rv2" x="{L2.clip_x:.1f}" y="{L2.clip_y:.1f}" width="{L2.clip_w:.1f}" height="{L2.clip_h:.1f}"/></clipPath>
 </defs>
 <style>
   .rv  {{ transform: translateX(0); animation: t1 .9s steps(7,end) .3s both; }}
   .rv2 {{ transform: translateX(0); animation: t2 .7s steps(5,end) 1.25s both; }}
-  @keyframes t1 {{ from {{ transform: translateX(-{L1_W + OVER_X:.1f}px) }} to {{ transform: translateX(0) }} }}
-  @keyframes t2 {{ from {{ transform: translateX(-{L2_W + OVER_X:.1f}px) }} to {{ transform: translateX(0) }} }}
+  /* Slide distance is the mask's own width, so it starts clear of the ink. */
+  @keyframes t1 {{ from {{ transform: translateX(-{L1.clip_w:.1f}px) }} to {{ transform: translateX(0) }} }}
+  @keyframes t2 {{ from {{ transform: translateX(-{L2.clip_w:.1f}px) }} to {{ transform: translateX(0) }} }}
+  .cur1 {{ opacity: 0; animation: cur1 1.25s steps(1,end) .3s; }}
+  @keyframes cur1 {{ 0%,100% {{ opacity:0 }} 2%,98% {{ opacity:1 }} }}
+  .cur2 {{ opacity: 1; animation: blink 1.1s steps(1,end) 1.95s infinite; }}
+  @keyframes blink {{ 0%,49% {{ opacity:1 }} 50%,100% {{ opacity:0 }} }}
+  .c1mv {{ animation: c1mv .9s steps(7,end) .3s both; }}
+  @keyframes c1mv {{ from {{ transform: translateX(-{L1.clip_w:.1f}px) }} to {{ transform: translateX(0) }} }}
+  .c2mv {{ animation: c2mv .7s steps(5,end) 1.25s both; }}
+  @keyframes c2mv {{ from {{ transform: translateX(-{L2.clip_w:.1f}px); opacity: 0 }} to {{ transform: translateX(0); opacity: 1 }} }}
   .sweep {{ animation: sweep 7s linear infinite; }}
   @keyframes sweep {{ from {{ transform: translateY(-120px) }} to {{ transform: translateY({H + 40}px) }} }}
   .radar {{ transform-origin: 1074px 168px; animation: spin 4s linear infinite; }}
@@ -122,7 +162,7 @@ def hero(dark: bool) -> str:
   .fade {{ opacity: 1; animation: fade .7s ease-out 1.8s both; }}
   @keyframes fade {{ from {{ opacity:0 }} to {{ opacity:1 }} }}
   @media (prefers-reduced-motion: reduce) {{
-    .rv,.rv2,.sweep,.radar,.led1,.led2,.led3,
+    .rv,.rv2,.cur1,.cur2,.c1mv,.c2mv,.sweep,.radar,.led1,.led2,.led3,
     .star,.star2,.star3,.rule,.fade {{ animation: none !important; }}
     .sweep {{ display: none; }}
   }}
@@ -148,6 +188,8 @@ def hero(dark: bool) -> str:
   <g clip-path="url(#clip1-{sfx})">{l1}</g>
   <g clip-path="url(#clip2-{sfx})">{l2}</g>
 </g>
+<g class="c1mv"><rect class="cur1" x="{L1.cursor_x:.1f}" y="{L1.baseline - L1.cap:.1f}" width="{FS * 0.42:.1f}" height="{L1.cap:.1f}" fill="{accent}"/></g>
+<g class="c2mv"><rect class="cur2" x="{L2.cursor_x:.1f}" y="{L2.baseline - L2.cap:.1f}" width="{FS * 0.42:.1f}" height="{L2.cap:.1f}" fill="{accent}"/></g>
 
 <!-- rule -->
 <line class="rule" x1="{PAD}" y1="{RULE_Y}" x2="{W - PAD}" y2="{RULE_Y}" stroke="{rule}" stroke-width="2" opacity=".55"/>

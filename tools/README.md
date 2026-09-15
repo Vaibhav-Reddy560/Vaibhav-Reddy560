@@ -44,6 +44,14 @@ figures for screen readers.
 as an image runs under `default-src 'none'` and cannot fetch a font over the network — live text
 would fall back to a system face.
 
+It also records each word's **true ink bbox**, and every bit of headline geometry in
+`build_assets.py` is derived from that rather than from advance widths. This matters: Octavus
+Black is steeply slanted, so a word's outline overhangs its own advance box by about a third of an
+em. The reveal mask's final resting position *is* the permanent crop, so a mask sized to the
+advance width silently guillotines the last letter of each line — which it did, for several
+commits, in a way that looks exactly like a rendering glitch. If you change the headline, re-run
+`glyphs.py`; do not hand-tune padding constants to compensate.
+
 The font itself is deliberately **not** committed here; point `OCTAVUS_TTF` at it if the default
 path is wrong:
 
