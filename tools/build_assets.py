@@ -105,23 +105,6 @@ def hero(dark: bool) -> str:
   .rv2 {{ transform: translateX(0); animation: t2 .7s steps(5,end) 1.25s both; }}
   @keyframes t1 {{ from {{ transform: translateX(-{L1_W + OVER_X:.1f}px) }} to {{ transform: translateX(0) }} }}
   @keyframes t2 {{ from {{ transform: translateX(-{L2_W + OVER_X:.1f}px) }} to {{ transform: translateX(0) }} }}
-  .cur1 {{ opacity: 0; animation: cur1 1.25s steps(1,end) .3s; }}
-  @keyframes cur1 {{ 0%,100% {{ opacity:0 }} 2%,98% {{ opacity:1 }} }}
-  /* Blinks 3 times then stays hidden — an infinite blink sits too close to the
-     padded glyph edge (see OVER_X) and reads as a bite taken out of the Y. */
-  .cur2 {{ opacity: 0; animation: cur2 1.8s steps(1,end) 1.95s both; }}
-  @keyframes cur2 {{
-    0%,16%   {{ opacity:1 }}
-    17%,33%  {{ opacity:0 }}
-    34%,50%  {{ opacity:1 }}
-    51%,67%  {{ opacity:0 }}
-    68%,84%  {{ opacity:1 }}
-    85%,100% {{ opacity:0 }}
-  }}
-  .c1mv {{ animation: c1mv .9s steps(7,end) .3s both; }}
-  @keyframes c1mv {{ from {{ transform: translateX(-{L1_W:.1f}px) }} to {{ transform: translateX(0) }} }}
-  .c2mv {{ animation: c2mv .7s steps(5,end) 1.25s both; }}
-  @keyframes c2mv {{ from {{ transform: translateX(-{L2_W:.1f}px); opacity: 0 }} to {{ transform: translateX(0); opacity: 1 }} }}
   .sweep {{ animation: sweep 7s linear infinite; }}
   @keyframes sweep {{ from {{ transform: translateY(-120px) }} to {{ transform: translateY({H + 40}px) }} }}
   .radar {{ transform-origin: 1074px 168px; animation: spin 4s linear infinite; }}
@@ -139,10 +122,9 @@ def hero(dark: bool) -> str:
   .fade {{ opacity: 1; animation: fade .7s ease-out 1.8s both; }}
   @keyframes fade {{ from {{ opacity:0 }} to {{ opacity:1 }} }}
   @media (prefers-reduced-motion: reduce) {{
-    .rv,.rv2,.c1mv,.c2mv,.cur1,.cur2,.sweep,.radar,.led1,.led2,.led3,
+    .rv,.rv2,.sweep,.radar,.led1,.led2,.led3,
     .star,.star2,.star3,.rule,.fade {{ animation: none !important; }}
     .sweep {{ display: none; }}
-    .cur1, .cur2 {{ opacity: 0; }}
   }}
 </style>
 
@@ -166,8 +148,6 @@ def hero(dark: bool) -> str:
   <g clip-path="url(#clip1-{sfx})">{l1}</g>
   <g clip-path="url(#clip2-{sfx})">{l2}</g>
 </g>
-<g class="c1mv"><rect class="cur1" x="{PAD + L1_W + OVER_X + 10:.1f}" y="{L1_Y - CAP:.1f}" width="{FS * 0.42:.1f}" height="{CAP:.1f}" fill="{accent}"/></g>
-<g class="c2mv"><rect class="cur2" x="{PAD + L2_W + OVER_X + 10:.1f}" y="{L2_Y - CAP:.1f}" width="{FS * 0.42:.1f}" height="{CAP:.1f}" fill="{accent}"/></g>
 
 <!-- rule -->
 <line class="rule" x1="{PAD}" y1="{RULE_Y}" x2="{W - PAD}" y2="{RULE_Y}" stroke="{rule}" stroke-width="2" opacity=".55"/>
