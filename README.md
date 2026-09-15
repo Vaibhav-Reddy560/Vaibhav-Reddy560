@@ -442,8 +442,8 @@ volunteering across college-level technical competitions.
 
 <img src="assets/stats-activity.svg" width="100%" alt="Contribution activity: 424 contributions in the last year, peaking at 122 in a single week">
 
-<sub>Measured from the GitHub API and drawn here rather than pulled from a stats service — the usual
-ones were returning 503 and 402 while this was being built, which renders as a broken image.</sub>
+<sub>Measured from the GitHub API and drawn here rather than pulled from a third-party stats service —
+so it always renders, and matches the palette exactly rather than approximating it.</sub>
 
 <img src="assets/divider.svg" width="100%" alt="">
 
