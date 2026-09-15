@@ -28,10 +28,9 @@
 > day, AI-powered web products the rest of the time.
 
 I'm a third-year **Artificial Intelligence and Machine Learning** student at **B.M.S. College of
-Engineering**, Bengaluru. I sit in the overlap between two things that usually live in different
-people: the visual side — branding, identity, UI/UX, posters that have to work at A3 and on a
-phone — and the engineering side — Next.js, React, TypeScript, Python, and AI systems that have
-to actually hold up when someone uses them.
+Engineering**, Bengaluru, building AI-powered products with Next.js, React, TypeScript and Python —
+systems that have to actually hold up when someone uses them, not just demo well. I also design
+the interfaces and identities around them, which is less common than it should be.
 
 Most of what I build starts as a design problem. Easy Club began because student organisations
 were running on scattered spreadsheets. Opacitys began because design feedback is almost always
@@ -50,7 +49,7 @@ ROLE ............. Designer & AI/ML engineer
 STUDYING ......... B.E. Artificial Intelligence & Machine Learning
 INSTITUTION ...... B.M.S. College of Engineering, Bengaluru
 GRADUATING ....... 2028
-FOCUS ............ Product design · AI applications · Branding & identity
+FOCUS ............ AI applications · Product engineering · Branding & identity
 CURRENTLY ........ Shipping Opacitys · designing for IEEE & UTSAV 2026
 STATUS ........... Open to opportunities
 ```
@@ -62,8 +61,6 @@ STATUS ........... Open to opportunities
 ### Easy Club · Club operations made easy
 
 `2025 — Present` &nbsp;·&nbsp; **[easyclub.in ↗](https://easyclub.in)** &nbsp;·&nbsp; [Source ↗](https://github.com/Vaibhav-Reddy560/Easy-Club)
-
-<img src="assets/shot-easy-club.webp" width="100%" alt="Easy Club product screenshot">
 
 A centralised command centre for student organisations, technical chapters and university clubs —
 replacing scattered spreadsheets and disconnected group chats with one operational workspace.
@@ -111,8 +108,6 @@ role-based access, all in one place.
 ### Opacitys · An AI creative workspace for designers
 
 `2026` &nbsp;·&nbsp; **[opacitys.vercel.app ↗](https://opacitys.vercel.app)** &nbsp;·&nbsp; [Source ↗](https://github.com/Vaibhav-Reddy560/Opacitys) &nbsp;·&nbsp; *Built solo*
-
-<img src="assets/shot-opacitys.webp" width="100%" alt="Opacitys product screenshot">
 
 Replace subjective design feedback with something measured or sourced. Every module either takes
 a real measurement or cites a real page — nothing is a confident guess dressed up as an answer.
@@ -278,59 +273,8 @@ edited through its own private portal — including signing in with your face.
 
 <img src="assets/plate-03.svg" width="100%" alt="03 — Design work">
 
-Posters, identities, badge systems and event collateral — most of it for **BMSCE IEEE Computer
-Society**, **IEEE Bangalore Section**, **Phase Shift** and **UTSAV 2026**. Built in Photoshop,
-Illustrator, Figma and Canva, and produced for print as well as screen.
-
-<table>
-  <tr>
-    <td align="center" width="25%">
-      <img src="assets/design-utsav-moto-show.webp" width="100%" alt="Moto Show poster"><br>
-      <b>Moto Show</b><br>
-      <sub>UTSAV 2026 · Event poster</sub>
-    </td>
-    <td align="center" width="25%">
-      <img src="assets/design-trial-by-combat.webp" width="100%" alt="Trial by Combat poster"><br>
-      <b>Trial by Combat</b><br>
-      <sub>Code IO × UTSAV 2026 · Event poster</sub>
-    </td>
-    <td align="center" width="25%">
-      <img src="assets/design-utsav-flashmob.webp" width="100%" alt="Flashmob poster"><br>
-      <b>Flashmob</b><br>
-      <sub>UTSAV 2026 · Event poster</sub>
-    </td>
-    <td align="center" width="25%">
-      <img src="assets/design-utsav-vc-meet.webp" width="100%" alt="VC Meet poster"><br>
-      <b>VC Meet</b><br>
-      <sub>UTSAV 2026 · Event poster</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="25%">
-      <img src="assets/design-data-heist.webp" width="100%" alt="Data Heist poster"><br>
-      <b>Data Heist</b><br>
-      <sub>Phase Shift 2025 · Event poster</sub>
-    </td>
-    <td align="center" width="25%">
-      <img src="assets/design-repogenesis.webp" width="100%" alt="RepoGenesis poster"><br>
-      <b>RepoGenesis</b><br>
-      <sub>Open Source Week · Hackathon poster</sub>
-    </td>
-    <td align="center" width="25%">
-      <img src="assets/design-agentic-ai-unpacked.webp" width="100%" alt="Agentic AI Unpacked poster"><br>
-      <b>Agentic AI Unpacked</b><br>
-      <sub>BMSCE IEEE CS × GitHub · Speaker session</sub>
-    </td>
-    <td align="center" width="25%">
-      <img src="assets/design-ieee-cs-2026-identity.webp" width="100%" alt="Chapter Identity 2026"><br>
-      <b>Chapter Identity 2026</b><br>
-      <sub>BMSCE IEEE CS · Identity graphic</sub>
-    </td>
-  </tr>
-</table>
-
 <details>
-<summary><b>The full set</b> — 22 pieces</summary>
+<summary><b>22 pieces</b> — posters, identities and badge systems for BMSCE IEEE Computer Society, IEEE Bangalore Section, Phase Shift and UTSAV 2026</summary>
 
 <br>
 
@@ -365,15 +309,6 @@ Illustrator, Figma and Canva, and produced for print as well as screen.
 
 <img src="assets/plate-04.svg" width="100%" alt="04 — Stack">
 
-**Design & Multimedia**
-
-![Figma](https://img.shields.io/badge/Figma-14142a?style=flat-square&logo=figma&logoColor=ede6d6)
-![Photoshop](https://img.shields.io/badge/Photoshop-14142a?style=flat-square&logo=adobephotoshop&logoColor=ede6d6)
-![Illustrator](https://img.shields.io/badge/Illustrator-14142a?style=flat-square&logo=adobeillustrator&logoColor=ede6d6)
-![Canva](https://img.shields.io/badge/Canva-14142a?style=flat-square&logo=canva&logoColor=ede6d6)
-![UI/UX](https://img.shields.io/badge/UI%2FUX-14142a?style=flat-square)
-![Branding](https://img.shields.io/badge/Branding-14142a?style=flat-square)
-
 **Build**
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-14142a?style=flat-square&logo=typescript&logoColor=ede6d6)
@@ -401,9 +336,23 @@ Illustrator, Figma and Canva, and produced for print as well as screen.
 ![FastAPI](https://img.shields.io/badge/FastAPI-14142a?style=flat-square&logo=fastapi&logoColor=ede6d6)
 ![Git](https://img.shields.io/badge/Git-14142a?style=flat-square&logo=git&logoColor=ede6d6)
 
+**Design & Multimedia**
+
+![Figma](https://img.shields.io/badge/Figma-14142a?style=flat-square&logo=figma&logoColor=ede6d6)
+![Photoshop](https://img.shields.io/badge/Photoshop-14142a?style=flat-square&logo=adobephotoshop&logoColor=ede6d6)
+![Illustrator](https://img.shields.io/badge/Illustrator-14142a?style=flat-square&logo=adobeillustrator&logoColor=ede6d6)
+![Canva](https://img.shields.io/badge/Canva-14142a?style=flat-square&logo=canva&logoColor=ede6d6)
+![UI/UX](https://img.shields.io/badge/UI%2FUX-14142a?style=flat-square)
+![Branding](https://img.shields.io/badge/Branding-14142a?style=flat-square)
+
 <img src="assets/divider.svg" width="100%" alt="">
 
 <img src="assets/plate-05.svg" width="100%" alt="05 — Leadership">
+
+<details>
+<summary><b>7 roles</b> — SAC Coordinator across IEEE Bangalore Section, IEEE CS Bangalore Chapter and BMSCE, including Hackaphasia 3.0 (350+ participants)</summary>
+
+<br>
 
 | Period | Role | Organisation |
 | :--- | :--- | :--- |
@@ -423,6 +372,8 @@ a 24-hour cycle — owning logistics and crisis management end to end.
 **Also involved in** — Rotaract Club of BMSCE (community service) · BMSCE Pentagram social media
 team (2024–25) · Phase Shift 2025 design team · IEEE INDICON conference volunteer · hackathon
 volunteering across college-level technical competitions.
+
+</details>
 
 <img src="assets/divider.svg" width="100%" alt="">
 
