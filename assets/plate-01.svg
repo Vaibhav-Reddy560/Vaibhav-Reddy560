@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 72" width="1200" height="72" role="img" aria-label="01 — IDENTITY">
+<title>01 // IDENTITY</title>
+<rect width="1200" height="72" fill="#14142a"/>
+<rect x="0" y="0" width="8" height="72" fill="#e8a33c"/>
+<g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace" letter-spacing="4">
+  <text x="34" y="46" font-size="22" fill="#e8a33c">01</text>
+  <text x="86" y="46" font-size="22" fill="#ede6d6" opacity=".35">//</text>
+  <text x="128" y="46" font-size="22" fill="#ede6d6">IDENTITY</text>
+</g>
+<rect x="1128" y="22" width="2" height="28" fill="#ede6d6" opacity=".3"/><rect x="1117" y="26" width="2" height="20" fill="#ede6d6" opacity=".3"/><rect x="1106" y="22" width="2" height="28" fill="#ede6d6" opacity=".3"/><rect x="1095" y="26" width="2" height="20" fill="#ede6d6" opacity=".3"/><rect x="1084" y="22" width="2" height="28" fill="#ede6d6" opacity=".3"/><rect x="1073" y="26" width="2" height="20" fill="#ede6d6" opacity=".3"/><rect x="1062" y="22" width="2" height="28" fill="#ede6d6" opacity=".3"/><rect x="1051" y="26" width="2" height="20" fill="#ede6d6" opacity=".3"/><rect x="1040" y="22" width="2" height="28" fill="#ede6d6" opacity=".3"/>
+<rect x="0" y="70" width="1200" height="2" fill="#3e6ca0" opacity=".7"/>
+</svg>
