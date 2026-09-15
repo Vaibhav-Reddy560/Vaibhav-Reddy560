@@ -10,7 +10,7 @@
 <rect x="0" y="0" width="1200" height="2" fill="#e8a33c" opacity=".8"/>
 <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace" letter-spacing="2.4">
   <text x="34" y="46" font-size="16" fill="#e8a33c">CONTRIBUTION ACTIVITY</text>
-  <text x="34" y="72" font-size="12.5" fill="#ede6d6" opacity=".5">424 CONTRIBUTIONS IN THE LAST YEAR · PER WEEK</text>
+  <text x="34" y="72" font-size="12.5" fill="#ede6d6" opacity=".5">424 IN THE LAST YEAR · PUBLIC + PRIVATE · BY WEEK</text>
   <text x="1166" y="46" font-size="12.5" fill="#ede6d6" opacity=".45" text-anchor="end">PEAK 122/WK</text>
 </g>
 <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,'DejaVu Sans Mono',monospace"><line x1="60.0" y1="237.5" x2="1160.0" y2="237.5" stroke="#ede6d6" stroke-width="1" opacity=".08"/><line x1="60.0" y1="193.0" x2="1160.0" y2="193.0" stroke="#ede6d6" stroke-width="1" opacity=".08"/><line x1="60.0" y1="148.5" x2="1160.0" y2="148.5" stroke="#ede6d6" stroke-width="1" opacity=".08"/><line x1="60.0" y1="104.0" x2="1160.0" y2="104.0" stroke="#ede6d6" stroke-width="1" opacity=".08"/><text x="48.0" y="241.5" font-size="11" fill="#ede6d6" opacity=".35" text-anchor="end">30</text><text x="48.0" y="197.0" font-size="11" fill="#ede6d6" opacity=".35" text-anchor="end">61</text><text x="48.0" y="152.5" font-size="11" fill="#ede6d6" opacity=".35" text-anchor="end">92</text><text x="48.0" y="108.0" font-size="11" fill="#ede6d6" opacity=".35" text-anchor="end">122</text></g>

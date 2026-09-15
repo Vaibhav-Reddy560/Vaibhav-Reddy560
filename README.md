@@ -438,9 +438,9 @@ volunteering across college-level technical competitions.
 
 <img src="assets/plate-07.svg" width="100%" alt="07 — Telemetry">
 
-<img src="assets/stats-languages.svg" width="100%" alt="Most used languages by bytes across 5 repositories: TypeScript 76.1%, Python 9.6%, HTML 6.5%, JavaScript 5.6%, CSS 1.8%, PLpgSQL 0.3%">
+<img src="assets/stats-languages.svg" width="100%" alt="Most used languages by bytes across 4 repositories: TypeScript 76.1%, Python 9.6%, HTML 6.5%, JavaScript 5.6%, CSS 1.8%, PLpgSQL 0.3%">
 
-<img src="assets/stats-activity.svg" width="100%" alt="Contribution activity: 424 contributions in the last year, peaking at 122 in a single week">
+<img src="assets/stats-activity.svg" width="100%" alt="Contribution activity: 424 contributions in the last year across public and private repositories, peaking at 122 in a single week">
 
 <sub>Measured from the GitHub API and drawn here rather than pulled from a third-party stats service —
 so it always renders, and matches the palette exactly rather than approximating it.</sub>
